@@ -1,0 +1,51 @@
+---
+- name: "lab nodes pve002"
+  count: 2
+  node_name: "pve002"
+  resource_name: "labl"
+  vm_id: 2000
+  agent:
+    enabled: true
+    trim: ""
+    type: "virtio"
+  bios: "seabios"
+  ignore_changes:
+    - "disks"
+    - "cdrom"
+  cpu:
+    cores: 2
+    sockets: 1
+  cloud_init:
+    type: "nocloud"
+    interface: "ide0"
+    datastore_id: "pve002d001"
+    dns:
+      domain: ""
+      server: "10.100.100.1 192.168.0.1"
+    user_account:
+      username: "andrew"
+    dns:
+      domain: ""
+      server: "10.100.100.1 192.168.0.1"
+    ip_configs:
+      - ipv4:
+          address: "10.100.100.60/24"
+          gateway: "10.100.100.1"
+  clone:
+    node_name: "pve002"
+    vm_id: 9002
+    full: false
+  disks:
+    - disk1:
+        interface: "scsi0"
+        datastore_id: "pve002d001"
+        size: 40
+        file_format: "raw"
+        cache: "none"
+  memory:
+    dedicated: 2048
+  network_devices:
+    - net1:
+        bridge: "vmbr1"
+        model: "virtio"
+  on_boot: true
