@@ -113,7 +113,7 @@ for vm in parsed_data:
                     user_account=proxmox.vm.VirtualMachineInitializationUserAccountArgs(
                         username=v['cloud_init']['user_account']['username'],
                         password=os.getenv("PROXMOX_USER_ACCOUNT_PASSWORD"),
-                        keys=os.getenv("PROXMOX_USER_ACCOUNT_KEYS"),
+                        keys=[os.getenv("PROXMOX_USER_ACCOUNT_KEYS")],
                     ),
                 ),
                 on_boot=v['on_boot'],
