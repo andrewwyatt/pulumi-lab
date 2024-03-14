@@ -1,0 +1,8 @@
+name: templates
+runtime:
+  name: python
+description: A simple pulumi deployment in Python.
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: python

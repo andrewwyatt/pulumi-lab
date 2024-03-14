@@ -31,7 +31,7 @@
   clone:
     node_name: "pve001"
     vm_id: 9001
-    full: false
+    full: true
   disks:
     - disk1:
         interface: "scsi0"
