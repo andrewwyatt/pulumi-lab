@@ -1,9 +1,9 @@
 ---
-- name: "lab nodes pve001"
-  count: 2
-  node_name: "pve001"
-  resource_name: "labl"
-  vm_id: 1000
+- name: "bastion node for homelab"
+  count: 1
+  node_name: "pve003"
+  resource_name: "bastion"
+  vm_id: 200
   agent:
     enabled: true
     trim: ""
@@ -18,7 +18,7 @@
   cloud_init:
     type: "nocloud"
     interface: "ide0"
-    datastore_id: "pve001d001"
+    datastore_id: "pve003sata001"
     user_account:
       username: "andrew"
     dns:
@@ -26,16 +26,16 @@
       server: "10.100.100.1 192.168.0.1"
     ip_configs:
       - ipv4:
-          address: "10.100.100.50/24"
+          address: "10.100.100.10/24"
           gateway: "10.100.100.1"
   clone:
-    node_name: "pve001"
+    node_name: "pve004"
     vm_id: 9001
-    full: true
+    full: false
   disks:
     - disk1:
         interface: "scsi0"
-        datastore_id: "pve001d001"
+        datastore_id: "pve003sata001"
         size: 40
         file_format: "raw"
         cache: "none"

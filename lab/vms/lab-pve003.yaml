@@ -1,9 +1,9 @@
 ---
-- name: "lab nodes pve002"
-  count: 2
-  node_name: "pve002"
+- name: "lab nodes - pulumi test env"
+  count: 4
+  node_name: "pve003"
   resource_name: "labl"
-  vm_id: 2000
+  vm_id: 11000
   agent:
     enabled: true
     trim: ""
@@ -18,10 +18,7 @@
   cloud_init:
     type: "nocloud"
     interface: "ide0"
-    datastore_id: "pve002d001"
-    dns:
-      domain: ""
-      server: "10.100.100.1 192.168.0.1"
+    datastore_id: "pve003sata001"
     user_account:
       username: "andrew"
     dns:
@@ -29,21 +26,21 @@
       server: "10.100.100.1 192.168.0.1"
     ip_configs:
       - ipv4:
-          address: "10.100.100.60/24"
+          address: "10.100.100.50/24"
           gateway: "10.100.100.1"
   clone:
-    node_name: "pve002"
-    vm_id: 9002
+    node_name: "pve004"
+    vm_id: 9001
     full: true
   disks:
     - disk1:
         interface: "scsi0"
-        datastore_id: "pve002d001"
-        size: 40
+        datastore_id: "pve003sata001"
+        size: 20
         file_format: "raw"
         cache: "none"
   memory:
-    dedicated: 2048
+    dedicated: 1024
   network_devices:
     - net1:
         bridge: "vmbr1"
