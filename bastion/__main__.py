@@ -6,7 +6,7 @@ import ipaddress
 load_dotenv()
 provider = proxmox.Provider('proxmoxve',
                             endpoint=os.getenv("PROXMOX_ENDPOINT"),
-                            insecure=os.getenv("PROXMOX_INSECURE"),
+                            insecure=bool(os.getenv("PROXMOX_INSECURE")),
                             username=os.getenv("PROXMOX_USERNAME"),
                             password=os.getenv("PROXMOX_PASSWORD"),
                             )
@@ -82,7 +82,7 @@ for vm in parsed_data:
                 node_name=v['node_name'],
                 agent=proxmox.vm.VirtualMachineAgentArgs(
                     enabled=v['agent']['enabled'],
-                    trim=v['agent']['trim'],
+                    trim=bool(v['agent']['trim']),
                     type=v['agent']['type']
                 ),
                 bios=v['bios'],
